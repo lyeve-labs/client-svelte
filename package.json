@@ -46,7 +46,7 @@
     "svelte": ">=5.0.0"
   },
   "devDependencies": {
-    "@lyeve/cms-client": "file:../cms-client",
+    "@lyeve/cms-client": "^0.1.0",
     "svelte": "^5.0.0",
     "tsup": "^8.4.0",
     "typescript": "^5.7.0",
