@@ -1,11 +1,12 @@
-// Re-exports for SvelteKit consumers (compiles runes from source).
-// All implementation lives in index.ts.
+// SvelteKit entry point (svelte export condition).
+// Svelte's compiler handles $state runes from this file.
 export {
-  createCmsClient,
-  createAsyncStore,
-  createAuthStore,
-  type SvelteCmsConfig,
-  type AsyncStore,
-  type AuthState,
-  type AuthStore,
-} from './index.js';
+	createCmsClient,
+	createAsyncStore,
+	createMutation,
+	createAuthStore,
+	type SvelteCmsConfig,
+	type AsyncStore,
+	type AuthState,
+	type AuthStore,
+} from './runes.js';
