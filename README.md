@@ -47,23 +47,30 @@ pnpm add @lyeve/cms-client @lyeve/cms-client-svelte
   const client = createCmsClient({ baseUrl: 'https://cms.example.com' });
   const auth = createAuthStore(client);
 
-  async function handleLogin(email: string, password: string) {
-    const result = await auth.login(email, password);
-    if ('mfa_required' in result) {
-      // Handle MFA challenge
-    }
+  function handleLogin(e: SubmitEvent) {
+    e.preventDefault();
+    const data = new FormData(e.target as HTMLFormElement);
+    const credentials = { email: data.get('email') as string, password: data.get('password') as string };
+
+    // Call your auth endpoint, then store the result:
+    const user = { id: '1', email: credentials.email, roles: ['admin'] };
+    auth.setUser(user, 'jwt-token');
+  }
+
+  function handleLogout() {
+    auth.clear();
   }
 </script>
 
 {#if !auth.isAuthenticated}
-  <form onsubmit|preventDefault={handleLogin}>
-    <input type="email" bind:value={email} />
-    <input type="password" bind:value={password} />
+  <form onsubmit={handleLogin}>
+    <input type="email" name="email" required />
+    <input type="password" name="password" required />
     <button type="submit">Log in</button>
   </form>
 {:else}
   <p>Welcome, {auth.user?.email}</p>
-  <button onclick={() => auth.logout()}>Log out</button>
+  <button onclick={handleLogout}>Log out</button>
 {/if}
 ```
 
@@ -97,16 +104,16 @@ const store = createAsyncStore(
 
 ### `createAuthStore(client)`
 
-Auth state store with login, logout, and session restore:
+Auth state store with reactive user, token, and methods to set/clear/restore sessions:
 
 ```ts
 const auth = createAuthStore(client);
 // auth.user            - { id, email, roles } | null
 // auth.token           - string | null
 // auth.isAuthenticated - boolean
-// auth.login(email, password)     - Promise<LoginResponse>
-// auth.logout()                   - Promise<void>
-// auth.load()                     - Promise<void>
+// auth.setUser(user, token) - void
+// auth.clear()             - void
+// auth.load()              - Promise<void>
 ```
 
 ## License
