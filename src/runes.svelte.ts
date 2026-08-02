@@ -1,4 +1,4 @@
-import { createClient, type HttpClient } from "@lyeve/cms-client";
+import { createClient, type HttpClient } from "@lyeve-labs/client";
 
 // Client factory
 

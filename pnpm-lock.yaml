@@ -8,9 +8,9 @@ importers:
 
   .:
     devDependencies:
-      '@lyeve-labs/client-svelte':
-        specifier: ^0.1.0
-        version: 0.1.2(svelte@5.56.7)
+      '@lyeve-labs/client':
+        specifier: ^0.2.0
+        version: 0.2.1
       prettier:
         specifier: ^3.4.0
         version: 3.9.6
@@ -342,12 +342,9 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lyeve-labs/client-svelte@0.1.2':
-    resolution: {integrity: sha512-yJ4gIKFGOBZPZTEpyPwgU8jFYy0XAqNch3HZmu/vGLtCqzUUMY+zVptIpGU5lRz7GEa6VMgRJ8BoWXMo/0IX5A==}
+  '@lyeve-labs/client@0.2.1':
+    resolution: {integrity: sha512-VvEnHw1C/zM2k/w3d+qB5QB/LUp1d5vLybFC2LnlXqnRGemHXtr0h2LJnzN6bAZmFf07uTyLVGIMqoS2AhZ94g==}
     engines: {node: '>=20'}
-    peerDependencies:
-      '@lyeve-labs/client-svelte': '>=0.1.0'
-      svelte: '>=5.0.0'
 
   '@publint/pack@0.1.5':
     resolution: {integrity: sha512-edgyN2pP07uXiP4tJs0s8KVmU8M8i60YPbbI0/WDeok1mIJHRXz+CgD8I0nelwDkoCh3EWL/G5kGfbuHjsdbvw==}
@@ -1094,10 +1091,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lyeve-labs/client-svelte@0.1.2(svelte@5.56.7)':
-    dependencies:
-      '@lyeve-labs/client-svelte': 0.1.2(svelte@5.56.7)
-      svelte: 5.56.7
+  '@lyeve-labs/client@0.2.1': {}
 
   '@publint/pack@0.1.5':
     dependencies:

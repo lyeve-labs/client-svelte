@@ -9,4 +9,4 @@ export {
   type AsyncStore,
   type AuthState,
   type AuthStore,
-} from "./runes.js";
+} from "./runes.svelte.js";
