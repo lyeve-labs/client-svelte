@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Build against client 0.3.0, and raise the `@lyeve-labs/client` peer floor to
   0.2.1. The previous floor allowed 0.1.x, which was never published to the registry.
 
+### Fixed
+
+- Point the README, contributing guide, and security policy at the published
+  `@lyeve-labs` scope. They still named the retired `@lyeve/cms-*` packages, so
+  every documented install command resolved to a package that does not exist.
+
 ## [0.1.3] - 2026-08-04
 
 ### Fixed

@@ -1,4 +1,4 @@
-# Contributing to `@lyeve/cms-client-svelte`
+# Contributing to `@lyeve-labs/client-svelte`
 
 ## Quick start
 

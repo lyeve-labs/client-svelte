@@ -1,20 +1,20 @@
-# @lyeve/cms-client-svelte
+# @lyeve-labs/client-svelte
 
 Svelte 5 reactive stores for the LyEve CMS API. Thin wrapper around
-`@lyeve/cms-client` using Svelte 5 runes (`$state`).
+`@lyeve-labs/client` using Svelte 5 runes (`$state`).
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Svelte 5](https://img.shields.io/badge/svelte-5-ff3e00.svg)](https://svelte.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6.svg)](https://www.typescriptlang.org)
 
 ```bash
-pnpm add @lyeve/cms-client @lyeve/cms-client-svelte
+pnpm add @lyeve-labs/client @lyeve-labs/client-svelte
 ```
 
 ```svelte
 <script lang="ts">
-  import { createCmsClient, createAsyncStore } from '@lyeve/cms-client-svelte';
-  import { getSchemas } from '@lyeve/cms-client-rest';
+  import { createCmsClient, createAsyncStore } from '@lyeve-labs/client-svelte';
+  import { getSchemas } from '@lyeve-labs/client-rest';
 
   const client = createCmsClient({
     baseUrl: 'https://cms.example.com',
@@ -55,14 +55,14 @@ No Provider needed. Create a client, pass it in, done.
 
 - **Node 20** or newer
 - **Svelte 5.0** or newer
-- **[@lyeve/cms-client](https://www.npmjs.com/package/@lyeve/cms-client)** `>=0.2.1`
+- **[@lyeve-labs/client](https://www.npmjs.com/package/@lyeve-labs/client)** `>=0.2.1`
 
 ## Install
 
 ```bash
-pnpm add @lyeve/cms-client @lyeve/cms-client-svelte
-# or npm install @lyeve/cms-client @lyeve/cms-client-svelte
-# or yarn add @lyeve/cms-client @lyeve/cms-client-svelte
+pnpm add @lyeve-labs/client @lyeve-labs/client-svelte
+# or npm install @lyeve-labs/client @lyeve-labs/client-svelte
+# or yarn add @lyeve-labs/client @lyeve-labs/client-svelte
 ```
 
 ## Use
@@ -71,8 +71,8 @@ pnpm add @lyeve/cms-client @lyeve/cms-client-svelte
 
 ```svelte
 <script lang="ts">
-  import { createCmsClient, createAsyncStore } from '@lyeve/cms-client-svelte';
-  import { getSchemas } from '@lyeve/cms-client-rest';
+  import { createCmsClient, createAsyncStore } from '@lyeve-labs/client-svelte';
+  import { getSchemas } from '@lyeve-labs/client-rest';
 
   const client = createCmsClient({
     baseUrl: 'https://cms.example.com',
@@ -101,7 +101,7 @@ pnpm add @lyeve/cms-client @lyeve/cms-client-svelte
 
 ```svelte
 <script lang="ts">
-  import { createCmsClient, createAuthStore } from '@lyeve/cms-client-svelte';
+  import { createCmsClient, createAuthStore } from '@lyeve-labs/client-svelte';
 
   const client = createCmsClient({ baseUrl: 'https://cms.example.com' });
   const auth = createAuthStore(client);
@@ -193,7 +193,7 @@ tests/               # vitest test suite
 
 ## Versioning
 
-`@lyeve/cms-client-svelte` follows [SemVer](https://semver.org). While under `1.0`,
+`@lyeve-labs/client-svelte` follows [SemVer](https://semver.org). While under `1.0`,
 breaking changes bump the **minor** version; additive changes bump the **patch**.
 Every release is logged in [`CHANGELOG.md`](CHANGELOG.md).
 

@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-If you find a security vulnerability in `@lyeve/cms-client-svelte`, **do not**
+If you find a security vulnerability in `@lyeve-labs/client-svelte`, **do not**
 open a public issue. Send the details to **security@lyeve.com** instead. We'll
 acknowledge within 48 hours and aim to resolve within 7 days.
 
