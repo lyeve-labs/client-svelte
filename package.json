@@ -1,6 +1,6 @@
 {
   "name": "@lyeve-labs/client-svelte",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Svelte 5 reactive stores for the LyEve Core API - thin wrapper around @lyeve-labs/client using $state runes",
   "license": "MIT",
   "author": "LyEve <info@lyeve.com>",
