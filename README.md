@@ -65,6 +65,9 @@ pnpm add @lyeve-labs/client @lyeve-labs/client-svelte
 # or yarn add @lyeve-labs/client @lyeve-labs/client-svelte
 ```
 
+The examples below fetch through the REST helpers, which ship separately. Add
+`@lyeve-labs/client-rest` if you want them, or pass any fetcher of your own.
+
 ## Use
 
 ### Data fetching
