@@ -46,11 +46,11 @@
     "format:check": "prettier --check ."
   },
   "peerDependencies": {
-    "@lyeve-labs/client": ">=0.1.0",
+    "@lyeve-labs/client": ">=0.2.1",
     "svelte": ">=5.0.0"
   },
   "devDependencies": {
-    "@lyeve-labs/client": "^0.2.0",
+    "@lyeve-labs/client": "^0.3.0",
     "svelte": "^5.0.0",
     "tsup": "^8.4.0",
     "typescript": "^5.7.0",

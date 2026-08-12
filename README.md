@@ -55,7 +55,7 @@ No Provider needed. Create a client, pass it in, done.
 
 - **Node 20** or newer
 - **Svelte 5.0** or newer
-- **[@lyeve/cms-client](https://www.npmjs.com/package/@lyeve/cms-client)** `>=0.1.0`
+- **[@lyeve/cms-client](https://www.npmjs.com/package/@lyeve/cms-client)** `>=0.2.1`
 
 ## Install
 
