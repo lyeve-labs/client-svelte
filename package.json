@@ -29,8 +29,11 @@
   },
   "files": [
     "dist",
+    "src",
     "!dist/**/*.test.*",
-    "!dist/**/*.spec.*"
+    "!dist/**/*.spec.*",
+    "!src/**/*.test.*",
+    "!src/**/*.spec.*"
   ],
   "sideEffects": false,
   "publishConfig": {
