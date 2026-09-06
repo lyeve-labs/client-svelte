@@ -9,21 +9,35 @@ const SRC_DIR = fileURLToPath(new URL("./src/", import.meta.url));
 export default defineConfig({
   plugins: [
     {
-      name: "svelte-runes-strip",
+      // Compile .svelte.ts through Svelte, the same transform tsup applies.
+      //
+      // This used to be a regex that deleted the runes so vitest could load the
+      // source without a compiler. The suite then exercised a rune-free rewrite
+      // that is not the shipped artifact, which is how 171 lines of green tests
+      // sat beside a dist that threw ReferenceError on import. Compiling means
+      // the tests run the semantics the consumer gets.
+      name: "svelte-compile-module",
       enforce: "pre",
-      transform(code: string, id: string) {
-        if (!id.startsWith(SRC_DIR)) return;
-        // Strip Svelte 5 runes so vitest (no Svelte compiler) can load the source.
-        // Replaces `let x = $state<T>(val)` with `let x = val`
-        // and `$derived(...)` with `(...)` and `$effect(...)` with a noop.
-        let out = code;
-        // typed: $state<Foo>(expr) > expr
-        out = out.replace(/\$state\s*<[^>]*>\s*\(/g, "(");
-        // untyped: $state(expr) > expr
-        out = out.replace(/\$state\s*\(/g, "(");
-        out = out.replace(/\$derived\s*\(/g, "(");
-        out = out.replace(/\$effect\s*\(/g, "(()=>{})(");
-        if (out !== code) return { code: out };
+      async transform(code: string, id: string) {
+        if (!id.startsWith(SRC_DIR) || !/\.svelte\.ts$/.test(id)) return;
+        const { compileModule } = await import("svelte/compiler");
+        // typescript rather than esbuild: pnpm's layout does not expose
+        // tsup's or vitest's own esbuild to this config, and typescript is
+        // already a devDependency here.
+        const ts = (await import("typescript")).default;
+        const stripped = ts.transpileModule(code, {
+          compilerOptions: {
+            target: ts.ScriptTarget.ES2022,
+            module: ts.ModuleKind.ESNext,
+            verbatimModuleSyntax: false,
+          },
+          fileName: id,
+        });
+        const compiled = compileModule(stripped.outputText, {
+          filename: id,
+          generate: "client",
+        });
+        return { code: compiled.js.code, map: compiled.js.map };
       },
     },
   ],
