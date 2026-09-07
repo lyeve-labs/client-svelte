@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.6] - 2026-09-07
+
+### Fixed
+
+- The published bundles shipped Svelte runes uncompiled. `dist/index.js` and
+  `dist/index.cjs` each carried seven raw `$state(...)` calls and threw
+  `ReferenceError: $state is not defined` on a consumer's first import, so only
+  the `svelte` export condition worked, where the consumer's own compiler
+  handled the file. `.svelte.ts` modules now go through Svelte's
+  `compileModule` at build time and both entries load and run under plain node.
+  Svelte is already a peer dependency, so the compiled output needs nothing a
+  consumer does not already have.
+- The test suite stripped the runes with a regex before loading the source, so
+  it exercised a rewrite rather than the artifact. It compiles them now, and
+  the cases run against real reactivity.
+
 ## [0.1.5] - 2026-09-02
 
 ### Changed
