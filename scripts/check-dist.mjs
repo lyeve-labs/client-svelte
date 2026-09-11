@@ -72,7 +72,9 @@ const runes = [];
 for (const file of files) {
   if (file.endsWith(".d.ts") || file.endsWith(".d.cts")) continue;
   const src = readFileSync(file, "utf8");
-  for (const [, rune] of src.matchAll(/(?:^|[^.\w$])(\$state|\$derived|\$effect|\$props|\$bindable|\$inspect)\s*[(.]/g)) {
+  for (const [, rune] of src.matchAll(
+    /(?:^|[^.\w$])(\$state|\$derived|\$effect|\$props|\$bindable|\$inspect)\s*[(.]/g,
+  )) {
     runes.push(`${file}: ${rune}`);
   }
 }
