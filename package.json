@@ -1,13 +1,21 @@
 {
   "name": "@lyeve-labs/client-svelte",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Svelte 5 reactive stores for the LyEve Core API - thin wrapper around @lyeve-labs/client using $state runes",
   "license": "MIT",
   "author": "LyEve <info@lyeve.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyeve-labs/client-svelte.git"
+  },
+  "homepage": "https://github.com/lyeve-labs/client-svelte#readme",
+  "bugs": {
+    "url": "https://github.com/lyeve-labs/client-svelte/issues"
+  },
   "type": "module",
   "packageManager": "pnpm@11.25.0",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -41,12 +49,14 @@
   },
   "scripts": {
     "dev": "tsup --watch",
-    "build": "tsup && publint && node scripts/check-dist.mjs",
+    "build": "pnpm version:check && tsup && publint && node scripts/check-dist.mjs",
+    "version:check": "node scripts/check-version.mjs",
     "check": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
     "@lyeve-labs/client": ">=0.2.1",
