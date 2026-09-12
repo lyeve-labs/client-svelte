@@ -4,6 +4,14 @@
   "description": "Svelte 5 reactive stores for the LyEve Core API - thin wrapper around @lyeve-labs/client using $state runes",
   "license": "MIT",
   "author": "LyEve <info@lyeve.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyeve-labs/client-svelte.git"
+  },
+  "homepage": "https://github.com/lyeve-labs/client-svelte#readme",
+  "bugs": {
+    "url": "https://github.com/lyeve-labs/client-svelte/issues"
+  },
   "type": "module",
   "packageManager": "pnpm@11.25.0",
   "engines": {
