@@ -47,13 +47,16 @@ No Provider needed. Create a client, pass it in, done.
   base URL and dynamic headers.
 - **createAsyncStore:** reactive async data store built on `$state`. Returns
   `{ data, error, loading, refetch }`. All reactive, no boilerplate.
+- **createMutation:** a mutation that runs on demand. Returns reactive
+  `{ data, error, loading }` and a `run(vars)` trigger.
 - **createAuthStore:** auth state store with reactive `user`, `token`, and
-  `isAuthenticated`. Methods to `setUser`, `clear`, and `load` from storage.
+  `isAuthenticated`. `setUser` records a login, `clear` a logout, and `load`
+  asks `/api/admin/auth/me` who the session cookie belongs to.
 - **Svelte 5 native:** built on runes. No legacy stores, no `writable`.
 
 ## Requirements
 
-- **Node 20** or newer
+- **Node 24** or newer
 - **Svelte 5.0** or newer
 - **[@lyeve-labs/client](https://www.npmjs.com/package/@lyeve-labs/client)** `>=0.2.1`
 
@@ -161,18 +164,45 @@ function createAsyncStore<T>(
 
 All fields are reactive (`$state` rune).
 
+### createMutation(mutator, client)
+
+```ts
+function createMutation<T, V>(
+  mutator: (client: HttpClient, vars: V) => Promise<T>,
+  client: HttpClient,
+): {
+  data: T | null;
+  error: Error | null;
+  loading: boolean;
+  run: (vars: V) => Promise<T>;
+};
+```
+
+The mutation does not fire until `run` is called. `run` rethrows the error
+after recording it in `error`.
+
 ### createAuthStore(client)
 
 ```ts
-function createAuthStore(client: HttpClient): {
+interface AuthState {
   user: { id: string; email: string; roles: string[] } | null;
   token: string | null;
+}
+
+function createAuthStore(client: HttpClient): {
+  user: AuthState["user"];
+  token: string | null;
   isAuthenticated: boolean;
-  setUser: (user: User, token: string) => void;
+  setUser: (user: AuthState["user"], token: string | null) => void;
   clear: () => void;
   load: () => Promise<void>;
 };
 ```
+
+`isAuthenticated` is true while a token is held. `load()` fetches
+`/api/admin/auth/me` and sets `user` on success, but it sets no token, so after
+restoring a cookie session `isAuthenticated` stays false. Check `auth.user` in
+that case.
 
 ## Local development
 
@@ -189,7 +219,7 @@ pnpm build              # tsup + publint -> dist/
 src/
   index.ts           # public API (re-exports)
   index.svelte.ts    # Svelte 5 entry point
-  runes.ts           # createAsyncStore, createAuthStore
+  runes.svelte.ts    # createAsyncStore, createMutation, createAuthStore
   ambient.d.ts       # type declarations
 tests/               # vitest test suite
 ```
