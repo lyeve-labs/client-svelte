@@ -159,12 +159,13 @@ export interface AuthState {
 export interface AuthStore {
   readonly user: AuthState["user"];
   readonly token: string | null;
+  /** True while a user is known or a token is held. */
   readonly isAuthenticated: boolean;
   /** Set the current user and token after a successful login. */
   setUser: (user: AuthState["user"], token: string | null) => void;
   /** Clear auth state (e.g. after logout). */
   clear: () => void;
-  /** Try to load the current user from the server using the stored token. */
+  /** Ask the server who the current session belongs to and record the user. */
   load: () => Promise<void>;
 }
 
@@ -185,7 +186,9 @@ export function createAuthStore(client: HttpClient): AuthStore {
       return state.token;
     },
     get isAuthenticated() {
-      return state.token !== null;
+      // A session restored from a cookie has a user and no token the page
+      // can read, so the token alone cannot decide this.
+      return state.user !== null || state.token !== null;
     },
     setUser(user: AuthState["user"], token: string | null) {
       state = { user, token };

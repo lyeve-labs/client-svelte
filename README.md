@@ -199,10 +199,9 @@ function createAuthStore(client: HttpClient): {
 };
 ```
 
-`isAuthenticated` is true while a token is held. `load()` fetches
-`/api/admin/auth/me` and sets `user` on success, but it sets no token, so after
-restoring a cookie session `isAuthenticated` stays false. Check `auth.user` in
-that case.
+`isAuthenticated` is true while a user is known or a token is held. `load()`
+fetches `/api/admin/auth/me` and sets `user` on success, so a session restored
+from a cookie is authenticated even though the page holds no token.
 
 ## Local development
 
