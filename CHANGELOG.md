@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `createAuthStore` reports `isAuthenticated` as true once `load()` has
+  restored a user from the session cookie. It used to read only the token,
+  which a cookie session never sets, so a restored session read as signed out.
+
 - The README documents `createMutation`, gives `setUser` its real signature
   (`(user, token | null)`), names `runes.svelte.ts` in the layout, and says what
   `load()` restores: it sets `user` from `/api/admin/auth/me` and no token, so
