@@ -15,7 +15,7 @@ export interface SvelteCmsConfig {
 
 /**
  * Creates an HttpClient pre-configured with base URL and dynamic request
- * headers. No Provider needed - Svelte callers just pass the client around.
+ * headers. No Provider needed: Svelte callers just pass the client around.
  *
  * @example
  * ```ts
