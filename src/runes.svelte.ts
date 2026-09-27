@@ -22,7 +22,7 @@ export interface SvelteCmsConfig {
  * const client = createCmsClient({
  *   baseUrl: 'https://cms.example.com',
  *   getHeaders: () => ({ Authorization: `Bearer ${token}` }),
- * });
+ * }).
  * ```
  */
 export function createCmsClient(config: SvelteCmsConfig): HttpClient {

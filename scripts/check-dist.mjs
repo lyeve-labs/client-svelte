@@ -64,7 +64,7 @@ for (const [condition, entry] of entries) {
 
 // A rune that reaches dist is a package that throws on import. esbuild strips
 // the types from a .svelte.ts module and emits $state(...) verbatim, so the
-// artifact looked fine and failed on the consumer's first import; the vitest
+// artifact looked fine and failed on the consumer's first import. The vitest
 // config rewrites runes out of src before the suite loads, so the tests could
 // not see it either. tsup.config.ts runs the module through svelte's
 // compileModule now, and this refuses the build if that ever stops happening.
