@@ -153,6 +153,25 @@ describe("createAuthStore", () => {
     vi.unstubAllGlobals();
   });
 
+  it("load restores a cookie session as authenticated", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockResolvedValue(
+          new Response(
+            JSON.stringify({ id: "u1", email: "a@b.com", roles: ["admin"] }),
+            { status: 200, headers: { "content-type": "application/json" } },
+          ),
+        ),
+    );
+    const auth = createAuthStore(createCmsClient({ baseUrl: "http://test" }));
+    await auth.load();
+    expect(auth.token).toBeNull();
+    expect(auth.isAuthenticated).toBe(true);
+    vi.unstubAllGlobals();
+  });
+
   it("load silently fails when not authenticated", async () => {
     const fetchSpy = vi.fn().mockResolvedValue(
       new Response(JSON.stringify({ error: "unauthorized" }), {
