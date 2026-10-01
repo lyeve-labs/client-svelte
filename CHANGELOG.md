@@ -15,9 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The README documents `createMutation`, gives `setUser` its real signature
   (`(user, token | null)`), names `runes.svelte.ts` in the layout, and says what
-  `load()` restores: it sets `user` from `/api/admin/auth/me` and no token, so
-  `isAuthenticated` stays false after a cookie session is restored. The Node
-  floor reads 24.
+  `load()` restores: it sets `user` from `/api/admin/auth/me` and no token.
+  The Node floor reads 24.
 
 ## [0.1.8] - 2026-09-12
 
