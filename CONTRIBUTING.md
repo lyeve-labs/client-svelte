@@ -3,8 +3,8 @@
 ## Quick start
 
 ```bash
-git clone git@github.com:LyEve-Labs/cms-client-svelte.git
-cd cms-client-svelte
+git clone https://github.com/lyeve-labs/client-svelte.git
+cd client-svelte
 pnpm install
 pnpm test         # verify everything works
 ```
