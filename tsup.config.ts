@@ -18,7 +18,7 @@ const svelteRunes = {
   setup(build: any) {
     build.onLoad({ filter: /\.svelte\.ts$/ }, async (args: any) => {
       const source = await readFile(args.path, "utf8");
-      // esbuild is tsup's dependency, not ours; the plugin API hands us the
+      // esbuild is tsup's dependency, not ours. The plugin API hands us the
       // running instance so we do not have to declare it.
       const stripped = await build.esbuild.transform(source, {
         loader: "ts",
@@ -42,7 +42,7 @@ export default defineConfig({
   clean: true,
   splitting: false,
   // svelte/* so the compiled output's svelte/internal/client import stays
-  // external; a bare "svelte" does not match the subpath.
+  // external. A bare "svelte" does not match the subpath.
   external: ["@lyeve-labs/client", "svelte", /^svelte\//],
   esbuildPlugins: [svelteRunes],
 });
